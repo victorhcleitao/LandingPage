@@ -2,8 +2,8 @@ import "@/App.css";
 import { MessageCircle, MapPin, Baby, Ear, Brain, Heart, CheckCircle, Instagram, Phone, ClipboardCheck, UserRound, Handshake } from "lucide-react";
 
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5521967647661&text=Ol%C3%A1!%20Vi%20seu%20an%C3%BAncio%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20fonoaudiol%C3%B3gico%20infantil.";
-const PROFESSIONAL_PHOTO = "https://customer-assets.emergentagent.com/job_atendimento-fono/artifacts/vfkp0l5y_IMG_3137.jpeg";
-const LIFESTYLE_IMAGE = "https://customer-assets.emergentagent.com/job_atendimento-fono/artifacts/e7kq6bf2_IMG_2709.jpeg";
+const PROFESSIONAL_PHOTO = "/assets/prof_hero.jpeg";
+const LIFESTYLE_IMAGE = "/assets/lifestyle_work.jpeg";
 
 /* ─── Hero Section ─── */
 const HeroSection = () =>
@@ -111,7 +111,7 @@ const ParaQuemSection = () =>
       style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}
       data-testid="para-quem-title">
 
-        Para quem é o atendimento
+        Algumas áreas de atuação
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -305,13 +305,13 @@ const AtendimentoSection = () =>
         style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}
         data-testid="atendimento-title">
 
-          Atendimento Presencial
+          Atendimento Presencial e Online
         </h2>
         <p
         className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-3"
         style={{ color: "var(--brand-muted)" }}>
 
-          Atendimento realizado de forma presencial na região da <strong style={{ color: "var(--brand-dark)" }}>Baixada Fluminense / Nova Iguaçu</strong>, com foco no acolhimento da criança e de toda a família.
+          Atendimento realizado de forma <strong style={{ color: "var(--brand-dark)" }}>presencial ou online</strong>, com foco no acolhimento da criança e de toda a família. Entre em contato para consultar as condições e locais de atendimento.
         </p>
         <div className="flex flex-wrap justify-center gap-3 mt-6">
           {["Ambiente acolhedor", "Foco na família", "Atendimento individual"].map((item) =>
