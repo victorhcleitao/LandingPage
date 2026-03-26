@@ -5,6 +5,15 @@ const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5521967647661&text=Ol%
 const PROFESSIONAL_PHOTO = "/assets/prof_hero.jpeg";
 const LIFESTYLE_IMAGE = "/assets/lifestyle_work.jpeg";
 
+const trackWhatsAppClick = (location) => {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'whatsapp_click', {
+      'event_category': 'contact',
+      'event_label': location
+    });
+  }
+};
+
 /* ─── Hero Section ─── */
 const HeroSection = () =>
 <section
@@ -55,6 +64,7 @@ const HeroSection = () =>
 
       <a
       href={WHATSAPP_URL}
+      onClick={() => trackWhatsAppClick("Hero Section")}
       target="_blank"
       rel="noopener noreferrer"
       data-testid="hero-whatsapp-cta"
@@ -351,6 +361,7 @@ const CTASection = () =>
       </p>
       <a
       href={WHATSAPP_URL}
+      onClick={() => trackWhatsAppClick("Final CTA")}
       target="_blank"
       rel="noopener noreferrer"
       data-testid="final-whatsapp-cta"
@@ -420,6 +431,7 @@ const Footer = () =>
 const FloatingWhatsApp = () =>
 <a
   href={WHATSAPP_URL}
+  onClick={() => trackWhatsAppClick("Floating Button")}
   target="_blank"
   rel="noopener noreferrer"
   data-testid="floating-whatsapp-cta"
