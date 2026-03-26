@@ -32,7 +32,7 @@ const HeroSection = () =>
       <p
       className="uppercase animate-fade-in-up animate-delay-100 text-xs tracking-[0.2em] font-bold mt-6 opacity-0 !text-[#795C8A]"
       style={{ color: "var(--brand-primary)" }}
-      data-testid="hero-overline">Fonoaudiologa
+      data-testid="hero-overline">Fonoaudióloga
 
 
     </p>
@@ -46,12 +46,12 @@ const HeroSection = () =>
       </h1>
 
       <p
-      className="mt-5 text-base sm:text-lg leading-relaxed max-w-lg animate-fade-in-up opacity-0 animate-delay-300"
+      className="max-w-lg animate-fade-in-up animate-delay-300 text-base sm:text-lg leading-relaxed mt-5 opacity-0 !text-[#5C4F63]"
       style={{ color: "var(--brand-muted)" }}
-      data-testid="hero-subtitle">
+      data-testid="hero-subtitle">Há 15 anos transformando vidas através da fonoaudiologia.
 
-        Atendimento presencial com foco em atraso de fala, linguagem e desenvolvimento da comunicação infantil.
-      </p>
+
+    </p>
 
       <a
       href={WHATSAPP_URL}
@@ -101,11 +101,11 @@ const ParaQuemSection = () =>
 
     <div className="max-w-6xl mx-auto">
       <p
-      className="text-center uppercase text-xs tracking-[0.2em] font-bold mb-3"
+      className="uppercase text-center text-xs tracking-[0.2em] font-bold mb-3 !text-[#795C8A]"
       style={{ color: "var(--brand-primary)" }}>
 
-        Quem pode se beneficiar
-      </p>
+
+    </p>
       <h2
       className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-10"
       style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}
