@@ -2,8 +2,8 @@ import "@/App.css";
 import { MessageCircle, MapPin, Baby, Ear, Brain, Heart, CheckCircle, Instagram, Phone, ClipboardCheck, UserRound, Handshake } from "lucide-react";
 
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5521967647661&text=Ol%C3%A1!%20Vi%20seu%20an%C3%BAncio%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20fonoaudiol%C3%B3gico%20infantil.";
-const PROFESSIONAL_PHOTO = "https://customer-assets.emergentagent.com/job_9f76d5e9-9ab4-48af-b2e4-ad6e34f98e83/artifacts/nz08dvz9_IMG_3363.jpeg";
-const LIFESTYLE_IMAGE = "https://images.pexels.com/photos/5094681/pexels-photo-5094681.jpeg";
+const PROFESSIONAL_PHOTO = "https://customer-assets.emergentagent.com/job_atendimento-fono/artifacts/vfkp0l5y_IMG_3137.jpeg";
+const LIFESTYLE_IMAGE = "https://customer-assets.emergentagent.com/job_atendimento-fono/artifacts/e7kq6bf2_IMG_2709.jpeg";
 
 /* ─── Hero Section ─── */
 const HeroSection = () => (
@@ -22,8 +22,8 @@ const HeroSection = () => (
           <img
             src={PROFESSIONAL_PHOTO}
             alt="Fernanda Loyola - Fonoaudióloga Infantil"
-            className="w-full h-full object-none"
-            style={{ objectPosition: "50% 6.5%", transform: "scale(2.4)" }}
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 15%" }}
             data-testid="hero-photo"
           />
         </div>
@@ -271,7 +271,7 @@ const ComoFuncionaSection = () => (
         <div className="hidden md:block">
           <img
             src={LIFESTYLE_IMAGE}
-            alt="Mãe e criança sorrindo"
+            alt="Fernanda Loyola trabalhando com protocolos de avaliação"
             className="w-full rounded-[2rem] object-cover shadow-md"
             style={{ maxHeight: "420px" }}
             data-testid="lifestyle-image"
