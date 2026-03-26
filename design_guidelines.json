@@ -1,0 +1,114 @@
+{
+  "theme": "light",
+  "archetype": "Archetype 3 (Pastel & Soft) mixed with Archetype 1 (Organic & Earthy)",
+  "emotional_tone": "Welcoming, trustworthy, professional, delicate, humanized. Non-clinical.",
+  "typography": {
+    "heading_font": "Cormorant Garamond",
+    "body_font": "Manrope",
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none text-brand-dark",
+      "h2": "text-3xl sm:text-4xl tracking-tight text-brand-dark",
+      "h3": "text-xl sm:text-2xl text-brand-dark",
+      "body": "text-base sm:text-lg leading-relaxed text-brand-muted",
+      "overline": "uppercase text-xs tracking-[0.2em] font-bold text-brand-primary"
+    }
+  },
+  "colors": {
+    "background": {
+      "base": "#F8F6F1",
+      "surface": "#FFFFFF",
+      "lilac": "#E4DAEF",
+      "green": "#D3E1D4",
+      "pink": "#F5DEE3"
+    },
+    "text": {
+      "dark": "#2B2330",
+      "muted": "#5C4F63"
+    },
+    "brand": {
+      "primary": "#795C8A",
+      "secondary": "#E4DAEF",
+      "whatsapp": "#25D366",
+      "whatsapp_hover": "#20BD5C"
+    }
+  },
+  "spacing_and_layout": {
+    "general": "Mobile-first priority. High-end, generous padding (py-16 to py-24 for sections). Vertical rhythm established through clear negative space. Eliminate visual clutter.",
+    "border_radius": "Use extreme rounding (rounded-[2rem] or rounded-3xl) for cards and sections to create a soft, safe, organic feel suitable for pediatrics. Hero image must be rounded-full.",
+    "alignment": "Center alignment for Hero and Final CTA to emphasize conversion. Left alignment for reading-heavy cards and lists."
+  },
+  "components": {
+    "buttons": {
+      "primary": "rounded-full bg-[#25D366] text-white font-semibold px-8 py-4 shadow-[0_8px_24px_rgba(37,211,102,0.25)] hover:-translate-y-1 hover:bg-[#20BD5C] transition-all flex items-center justify-center gap-2 text-lg",
+      "secondary": "rounded-full bg-[#795C8A] text-white font-medium px-8 py-4 shadow-[0_8px_24px_rgba(121,92,138,0.25)] hover:-translate-y-1 transition-transform flex items-center justify-center gap-2"
+    },
+    "cards": {
+      "base": "p-8 rounded-[2rem] bg-white border border-[#2B2330]/5 shadow-sm hover:shadow-md transition-shadow",
+      "colored_variants": "Use the soft lilac, pink, and green colors as full background fills for the specific cards in the 'Para quem é' section, removing the border and keeping the text dark."
+    }
+  },
+  "sections_instructions": [
+    {
+      "name": "Hero Section",
+      "layout": "Flex column, center-aligned, max-w-2xl mx-auto text-center px-4 pt-16 pb-12.",
+      "content": "Professional circular photo, overline 'Fonoaudiologia Infantil', H1 'Fernanda Loyola', elegant subtitle addressing speech delay/communication development, Primary WhatsApp CTA.",
+      "visuals": "Background is sand/light beige base (#F8F6F1). Add a soft, decorative abstract CSS blob (blur-3xl) in soft lilac behind the photo to frame it."
+    },
+    {
+      "name": "Para Quem é o Atendimento",
+      "layout": "Grid cols-1 md:grid-cols-3 gap-6 px-4 py-16 max-w-6xl mx-auto.",
+      "content": "3 main cards representing target issues (e.g., Atraso de fala, Dificuldades de comunicação, Trocas na fala).",
+      "visuals": "Assign each card a distinct pastel background (lilac, pink, green). Use a clean Lucide icon at the top of each card in the brand primary color."
+    },
+    {
+      "name": "Como Funciona",
+      "layout": "Grid cols-1 md:grid-cols-2 gap-12 px-4 py-16 bg-white max-w-6xl mx-auto items-center.",
+      "content": "3-step list: 1. Avaliação, 2. Plano Individual, 3. Atendimento Humanizado.",
+      "visuals": "Left side: vertical steps with numbers or connecting lines. Right side: The 'Mother and child smiling' supporting image, rounded-[2rem]."
+    },
+    {
+      "name": "Atendimento Presencial",
+      "layout": "Soft bordered container or soft green background container, max-w-4xl mx-auto text-center py-12 px-6 rounded-[2rem] my-12.",
+      "content": "Location details: Baixada Fluminense / Nova Iguaçu. Emphasize a welcoming, safe environment.",
+      "visuals": "Use MapPin icon. Emphasize the text layout with generous line height."
+    },
+    {
+      "name": "Final CTA",
+      "layout": "Full width block, heavily padded (py-20), bg-brand-primary text-white text-center.",
+      "content": "Encouraging closing statement reassuring parents. Massive primary WhatsApp Button (maybe contrasting white button with green text, or green button).",
+      "visuals": "Clean, distraction-free. The entire focus is the WhatsApp button."
+    },
+    {
+      "name": "Footer",
+      "layout": "Simple flex column, center aligned, py-8 bg-[#F8F6F1] text-brand-muted text-sm.",
+      "content": "Name, Area, Instagram @fernandaloyola_fono, Phone."
+    },
+    {
+      "name": "Floating WhatsApp",
+      "layout": "Fixed bottom-right, z-50.",
+      "visuals": "Circular or pill-shaped, standard WhatsApp green. Apply hover scale and drop-shadow-xl. Ensure it does not cover the footer content."
+    }
+  ],
+  "media": {
+    "images": [
+      {
+        "url": "https://customer-assets.emergentagent.com/job_9f76d5e9-9ab4-48af-b2e4-ad6e34f98e83/artifacts/vbns2uwt_IMG_3362.png",
+        "description": "Fernanda Loyola professional photo. Crop circular (rounded-full).",
+        "category": "hero"
+      },
+      {
+        "url": "https://images.pexels.com/photos/5094681/pexels-photo-5094681.jpeg",
+        "description": "Mother and child smiling. Use in 'Como Funciona' section to build empathy and trust. Apply soft rounded-[2rem] corners.",
+        "category": "supporting_lifestyle"
+      }
+    ],
+    "icons": {
+      "library": "lucide-react",
+      "instructions": "Use Lucide React. Set strokeWidth={1.5} to maintain the delicate aesthetic. Required icons: MessageCircle (WhatsApp), MapPin, CheckCircle/Baby/Ear for the cards."
+    }
+  },
+  "testing": {
+    "instructions": "All interactive elements MUST include data-testid. Specifically: 'hero-whatsapp-cta', 'final-whatsapp-cta', 'floating-whatsapp-cta'."
+  },
+  "instructions_to_main_agent": "CRITICAL: You are building a Google Ads landing page. Conversion (WhatsApp clicks) is the ONLY goal. The design must be extremely clean, mobile-optimized, and free of distracting animations. Use the exact hex codes provided to achieve the 'Pastel & Soft' pediatric aesthetic without looking like a sterile clinic. Avoid default Shadcn card borders if they look too rigid; prefer the soft rounded-[2rem] shapes and pastel backgrounds for visual separation. DO NOT use generic stock vectors; rely on the provided imagery and elegant typography. Remember to implement standard semantic HTML for basic SEO."
+}
