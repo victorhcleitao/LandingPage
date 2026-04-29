@@ -14,19 +14,28 @@ const feedbackImages = [
 
 const instagramPosts = [
   {
-    title: "Transtornos de Fala",
-    description: "Dicas sobre como identificar atrasos no desenvolvimento.",
+    title: "Marcos de Desenvolvimento",
+    description: "Saiba o que esperar em cada fase da comunicação do seu filho.",
+    link: "https://www.instagram.com/p/DWkJfFpDo1P/",
     icon: Brain
   },
   {
-    title: "Autismo e Comunicação",
-    description: "Estratégias para estimular a fala funcional.",
-    icon: Heart
+    title: "Intervenção Precoce",
+    description: "A importância do diagnóstico e estímulo nos primeiros anos.",
+    link: "https://www.instagram.com/reel/DW9vC9thU_g/",
+    icon: Baby
   },
   {
-    title: "Intervenção Precoce",
-    description: "A importância do diagnóstico nos primeiros anos.",
-    icon: Baby
+    title: "Testes e Protocolos",
+    description: "Conheça as ferramentas usadas na avaliação fonoaudiológica.",
+    link: "https://www.instagram.com/reel/DWSH66sBQAH/",
+    icon: ClipboardCheck
+  },
+  {
+    title: "Fonoaudiologia no Autismo",
+    description: "Como a fono pode auxiliar no desenvolvimento do autista.",
+    link: "https://www.instagram.com/reel/DXKqc6HhTEX/",
+    icon: Heart
   }
 ];
 
@@ -333,19 +342,19 @@ const SocialSection = () =>
       <h2 className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-12" style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
         Conteúdo e Dicas
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {instagramPosts.map((post, i) => (
-          <div key={i} className="p-8 rounded-[2rem] bg-white border border-[#2B2330]/5 shadow-sm hover:shadow-md transition-all text-center">
-            <div className="w-16 h-16 rounded-full bg-[#E4DAEF] flex items-center justify-center mx-auto mb-6">
+          <div key={i} className="p-8 rounded-[2rem] bg-white border border-[#2B2330]/5 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
+            <div className="w-16 h-16 rounded-full bg-[#E4DAEF] flex items-center justify-center mb-6">
               <post.icon size={28} className="text-[#795C8A]" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
-            <p className="text-sm leading-relaxed text-[#5C4F63] mb-6">{post.description}</p>
+            <h3 className="text-xl font-semibold mb-3 leading-tight">{post.title}</h3>
+            <p className="text-sm leading-relaxed text-[#5C4F63] mb-6 flex-grow">{post.description}</p>
             <a 
-              href="https://www.instagram.com/fernandaloyola_fono/" 
+              href={post.link}
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#795C8A] hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#795C8A] hover:underline mt-auto"
             >
               <Instagram size={16} />
               Ver no Instagram
