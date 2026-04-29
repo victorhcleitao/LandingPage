@@ -1,9 +1,34 @@
 import "@/App.css";
-import { MessageCircle, MapPin, Baby, Ear, Brain, Heart, CheckCircle, Instagram, Phone, ClipboardCheck, UserRound, Handshake } from "lucide-react";
+import { MessageCircle, MapPin, Baby, Ear, Brain, Heart, CheckCircle, Instagram, Phone, ClipboardCheck, UserRound, Handshake, Star, Play } from "lucide-react";
 
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5521967647661&text=Ol%C3%A1!%20Vi%20seu%20an%C3%BAncio%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20fonoaudiol%C3%B3gico%20infantil.";
-const PROFESSIONAL_PHOTO = "/assets/prof_hero.jpeg";
+const PROFESSIONAL_PHOTO = "/assets/fernanda_hero.jpg";
 const LIFESTYLE_IMAGE = "/assets/lifestyle_work.jpeg";
+
+const feedbackImages = [
+  "/assets/feedback_1.jpg",
+  "/assets/feedback_2.jpg",
+  "/assets/feedback_3.jpg",
+  "/assets/feedback_4.jpg"
+];
+
+const instagramPosts = [
+  {
+    title: "Transtornos de Fala",
+    description: "Dicas sobre como identificar atrasos no desenvolvimento.",
+    icon: Brain
+  },
+  {
+    title: "Autismo e Comunicação",
+    description: "Estratégias para estimular a fala funcional.",
+    icon: Heart
+  },
+  {
+    title: "Intervenção Precoce",
+    description: "A importância do diagnóstico nos primeiros anos.",
+    icon: Baby
+  }
+];
 
 const trackWhatsAppClick = (location) => {
   if (typeof window.gtag === 'function') {
@@ -22,17 +47,17 @@ const HeroSection = () =>
   style={{ backgroundColor: "var(--brand-bg)" }}>
 
     <div className="hero-blob" />
-    <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+    <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
       <div className="animate-fade-in-up opacity-0">
         <div
-        className="w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 shadow-lg mx-auto"
+        className="w-40 h-40 sm:w-56 sm:h-56 rounded-full overflow-hidden border-4 shadow-lg mx-auto"
         style={{ borderColor: "var(--brand-lilac)" }}>
 
           <img
           src={PROFESSIONAL_PHOTO}
-          alt="Fernanda Loyola - Fonoaudióloga Infantil"
+          alt="Fernanda Loyola - Fonoaudióloga Infantojuvenil"
           className="w-full h-full object-cover"
-          style={{ objectPosition: "center 15%" }}
+          style={{ objectPosition: "center 20%" }}
           data-testid="hero-photo" />
 
         </div>
@@ -41,26 +66,21 @@ const HeroSection = () =>
       <p
       className="uppercase animate-fade-in-up animate-delay-100 text-xs tracking-[0.2em] font-bold mt-6 opacity-0 !text-[#795C8A]"
       style={{ color: "var(--brand-primary)" }}
-      data-testid="hero-overline">Fonoaudióloga
-
-
-    </p>
+      data-testid="hero-overline">Fonoaudióloga infantojuvenil</p>
 
       <h1
       className="mt-3 text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none font-semibold animate-fade-in-up opacity-0 animate-delay-200"
       style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}
       data-testid="hero-title">
-
         Fernanda Loyola
       </h1>
 
       <p
-      className="max-w-lg animate-fade-in-up animate-delay-300 text-base sm:text-lg leading-relaxed mt-5 opacity-0 !text-[#5C4F63]"
+      className="max-w-2xl animate-fade-in-up animate-delay-300 text-base sm:text-lg leading-relaxed mt-5 opacity-0 !text-[#5C4F63]"
       style={{ color: "var(--brand-muted)" }}
-      data-testid="hero-subtitle">Há 15 anos transformando vidas através da fonoaudiologia.
-
-
-    </p>
+      data-testid="hero-subtitle">
+        Fonoaudióloga infanto-juvenil há mais de 15 anos, especializada em transtornos de fala, transtorno do espectro autista, síndrome de Down, CAA, prompt 1, multigestos e intervenção precoce. Atendimento em Nova Iguaçu e online.
+      </p>
 
       <a
       href={WHATSAPP_URL}
@@ -75,7 +95,7 @@ const HeroSection = () =>
       }}>
 
         <MessageCircle size={22} strokeWidth={1.5} />
-        Falar no WhatsApp
+        Agende sua avaliação fonoaudiológica
       </a>
     </div>
   </section>;
@@ -110,17 +130,10 @@ const ParaQuemSection = () =>
   style={{ backgroundColor: "var(--brand-surface)" }}>
 
     <div className="max-w-6xl mx-auto">
-      <p
-      className="uppercase text-center text-xs tracking-[0.2em] font-bold mb-3 !text-[#795C8A]"
-      style={{ color: "var(--brand-primary)" }}>
-
-
-    </p>
       <h2
       className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-10"
       style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}
       data-testid="para-quem-title">
-
         Algumas áreas de atuação
       </h2>
 
@@ -141,7 +154,6 @@ const ParaQuemSection = () =>
             <h3
           className="text-xl sm:text-2xl font-semibold mb-3"
           style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-
               {card.title}
             </h3>
             <p className="text-base leading-relaxed" style={{ color: "var(--brand-muted)" }}>
@@ -165,14 +177,12 @@ const SobreSection = () =>
       <p
       className="text-center uppercase text-xs tracking-[0.2em] font-bold mb-3"
       style={{ color: "var(--brand-primary)" }}>
-
         Conheça a profissional
       </p>
       <h2
       className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-10"
       style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}
       data-testid="sobre-title">
-
         Sobre Fernanda Loyola
       </h2>
 
@@ -198,7 +208,6 @@ const SobreSection = () =>
               key={tag}
               className="px-4 py-1.5 rounded-full text-sm font-medium"
               style={{ backgroundColor: "var(--brand-lilac)", color: "var(--brand-primary)" }}>
-
                   {tag}
                 </span>
             )}
@@ -208,6 +217,29 @@ const SobreSection = () =>
       </div>
     </div>
   </section>;
+
+/* ─── Feedbacks ─── */
+const FeedbackSection = () =>
+<section
+  data-testid="feedback-section"
+  className="px-4 py-16 sm:py-20"
+  style={{ backgroundColor: "var(--brand-surface)" }}>
+    <div className="max-w-6xl mx-auto">
+      <p className="text-center uppercase text-xs tracking-[0.2em] font-bold mb-3" style={{ color: "var(--brand-primary)" }}>
+        Feedbacks das Famílias
+      </p>
+      <h2 className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-12" style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        O que dizem os pais
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {feedbackImages.map((img, i) => (
+          <div key={i} className="rounded-[2rem] overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white">
+            <img src={img} alt={`Feedback ${i + 1}`} className="w-full h-auto" />
+          </div>
+        ))}
+      </div>
+    </div>
+</section>;
 
 
 /* ─── Como Funciona ─── */
@@ -236,25 +268,22 @@ const ComoFuncionaSection = () =>
 <section
   data-testid="como-funciona-section"
   className="px-4 py-16 sm:py-20"
-  style={{ backgroundColor: "var(--brand-surface)" }}>
+  style={{ backgroundColor: "var(--brand-bg)" }}>
 
     <div className="max-w-6xl mx-auto">
       <p
       className="text-center uppercase text-xs tracking-[0.2em] font-bold mb-3"
       style={{ color: "var(--brand-primary)" }}>
-
         Processo de atendimento
       </p>
       <h2
       className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-12"
       style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}
       data-testid="como-funciona-title">
-
         Como funciona
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Steps */}
         <div className="space-y-0">
           {steps.map((step, i) =>
         <div key={i}>
@@ -264,7 +293,6 @@ const ComoFuncionaSection = () =>
                   <h3
                 className="text-xl sm:text-2xl font-semibold mb-1"
                 style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-
                     {step.title}
                   </h3>
                   <p className="text-base leading-relaxed" style={{ color: "var(--brand-muted)" }}>
@@ -277,7 +305,6 @@ const ComoFuncionaSection = () =>
         )}
         </div>
 
-        {/* Image */}
         <div className="hidden md:block">
           <img
           src={LIFESTYLE_IMAGE}
@@ -285,11 +312,47 @@ const ComoFuncionaSection = () =>
           className="w-full rounded-[2rem] object-cover shadow-md"
           style={{ maxHeight: "420px" }}
           data-testid="lifestyle-image" />
-
         </div>
       </div>
     </div>
   </section>;
+
+
+/* ─── Conteúdo Instagram ─── */
+const SocialSection = () =>
+<section
+  data-testid="social-section"
+  className="px-4 py-16 sm:py-20"
+  style={{ backgroundColor: "var(--brand-surface)" }}>
+    <div className="max-w-6xl mx-auto">
+      <p className="text-center uppercase text-xs tracking-[0.2em] font-bold mb-3" style={{ color: "var(--brand-primary)" }}>
+        Acompanhe no Instagram
+      </p>
+      <h2 className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-12" style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        Conteúdo e Dicas
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {instagramPosts.map((post, i) => (
+          <div key={i} className="p-8 rounded-[2rem] bg-white border border-[#2B2330]/5 shadow-sm hover:shadow-md transition-all text-center">
+            <div className="w-16 h-16 rounded-full bg-[#E4DAEF] flex items-center justify-center mx-auto mb-6">
+              <post.icon size={28} className="text-[#795C8A]" />
+            </div>
+            <h3 className="text-xl font-semibold mb-3">{post.title}</h3>
+            <p className="text-sm leading-relaxed text-[#5C4F63] mb-6">{post.description}</p>
+            <a 
+              href="https://www.instagram.com/fernandaloyola_fono/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#795C8A] hover:underline"
+            >
+              <Instagram size={16} />
+              Ver no Instagram
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+</section>;
 
 
 /* ─── Atendimento Presencial ─── */
@@ -314,14 +377,12 @@ const AtendimentoSection = () =>
         className="text-3xl sm:text-4xl tracking-tight font-semibold mb-4"
         style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}
         data-testid="atendimento-title">
-
           Atendimento Presencial e Online
         </h2>
         <p
         className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-3"
         style={{ color: "var(--brand-muted)" }}>
-
-          Atendimento realizado de forma <strong style={{ color: "var(--brand-dark)" }}>presencial ou online</strong>, com foco no acolhimento da criança e de toda a família. Entre em contato para consultar as condições e locais de atendimento.
+          Atendimento realizado de forma <strong style={{ color: "var(--brand-dark)" }}>presencial em Nova Iguaçu (centro) ou online</strong>, com foco no acolhimento da criança e de toda a família. Entre em contato para consultar as condições.
         </p>
         <div className="flex flex-wrap justify-center gap-3 mt-6">
           {["Ambiente acolhedor", "Foco na família", "Atendimento individual"].map((item) =>
@@ -353,7 +414,6 @@ const CTASection = () =>
       className="text-3xl sm:text-4xl tracking-tight font-semibold text-white mb-4"
       style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
       data-testid="cta-title">
-
         Quer saber mais sobre o atendimento?
       </h2>
       <p className="text-base sm:text-lg leading-relaxed text-white/80 mb-8 max-w-lg mx-auto">
@@ -373,7 +433,7 @@ const CTASection = () =>
       }}>
 
         <MessageCircle size={22} strokeWidth={1.5} />
-        Chamar no WhatsApp
+        Agende sua avaliação fonoaudiológica
       </a>
     </div>
   </section>;
@@ -390,11 +450,10 @@ const Footer = () =>
       <p
       className="text-lg font-semibold"
       style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-
         Fernanda Loyola
       </p>
       <p className="text-sm" style={{ color: "var(--brand-muted)" }}>
-        Fonoaudiologia Infantil
+        Fonoaudiologia Infantojuvenil | CRFa 1-13720
       </p>
 
       <div className="flex items-center justify-center gap-6 pt-2">
@@ -453,7 +512,9 @@ function App() {
       <HeroSection />
       <ParaQuemSection />
       <SobreSection />
+      <FeedbackSection />
       <ComoFuncionaSection />
+      <SocialSection />
       <AtendimentoSection />
       <CTASection />
       <Footer />

@@ -77,3 +77,29 @@
   background: var(--brand-lilac);
   margin-left: 23px;
 }
+/* Feedback section images */
+.feedback-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.feedback-grid div:hover img {
+  transform: scale(1.02);
+}
+
+/* Social/Instagram section card */
+.social-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(43, 35, 48, 0.05);
+  box-shadow: 0 4px 20px rgba(43, 35, 48, 0.04);
+  transition: all 0.3s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(43, 35, 48, 0.08);
+}
