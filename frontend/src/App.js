@@ -525,7 +525,7 @@ function App() {
       <SobreSection />
       <FeedbackSection />
       <ComoFuncionaSection />
-      <SocialSection />
+      {/* <SocialSection /> */}
       <AtendimentoSection />
       <CTASection />
       <Footer />
