@@ -523,9 +523,9 @@ function App() {
       <HeroSection />
       <ParaQuemSection />
       <SobreSection />
-      <FeedbackSection />
+      {/* <FeedbackSection /> */}
       <ComoFuncionaSection />
-      {/* <SocialSection /> */}
+      <SocialSection />
       <AtendimentoSection />
       <CTASection />
       <Footer />
