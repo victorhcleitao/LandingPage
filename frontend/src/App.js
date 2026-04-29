@@ -231,10 +231,12 @@ const FeedbackSection = () =>
       <h2 className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-12" style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
         O que dizem os pais
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      {/* Masonry Layout using CSS Columns */}
+      <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
         {feedbackImages.map((img, i) => (
-          <div key={i} className="rounded-[2rem] overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white">
-            <img src={img} alt={`Feedback ${i + 1}`} className="w-full h-auto" />
+          <div key={i} className="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-black/5">
+            <img src={img} alt={`Feedback ${i + 1}`} className="w-full h-auto block" />
           </div>
         ))}
       </div>
