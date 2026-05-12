@@ -1,5 +1,7 @@
 import "@/App.css";
-import { MessageCircle, MapPin, Baby, Ear, Brain, Heart, CheckCircle, Instagram, Phone, ClipboardCheck, UserRound, Handshake, Star, Play } from "lucide-react";
+import { MessageCircle, MapPin, Baby, Ear, Brain, Heart, CheckCircle, Instagram, Phone, ClipboardCheck, UserRound, Handshake, Star, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from 'embla-carousel-react';
+import { useCallback } from 'react';
 
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5521967647661&text=Ol%C3%A1!%20Vi%20seu%20an%C3%BAncio%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20fonoaudiol%C3%B3gico%20infantil.";
 const PROFESSIONAL_PHOTO = "/assets/fernanda_hero.jpg";
@@ -88,7 +90,7 @@ const HeroSection = () =>
       className="max-w-2xl animate-fade-in-up animate-delay-300 text-base sm:text-lg leading-relaxed mt-5 opacity-0 !text-[#5C4F63]"
       style={{ color: "var(--brand-muted)" }}
       data-testid="hero-subtitle">
-        Fonoaudióloga infanto-juvenil há mais de 15 anos, especializada em transtornos de fala, transtorno do espectro autista, síndrome de Down, CAA, prompt 1, multigestos e intervenção precoce. Atendimento em Nova Iguaçu e online.
+        Fonoaudióloga infanto-juvenil há mais de 15 anos, especializada em transtornos de fala, transtorno do espectro autista, síndrome de Down, CAA, prompt 1, multigestos e intervenção precoce. Atendimento particular (não aceito convênio) em Vila Valqueire, Nova Iguaçu e online.
       </p>
 
       <a
@@ -329,41 +331,107 @@ const ComoFuncionaSection = () =>
   </section>;
 
 
-/* ─── Conteúdo Instagram ─── */
-const SocialSection = () =>
-<section
-  data-testid="social-section"
-  className="px-4 py-16 sm:py-20"
-  style={{ backgroundColor: "var(--brand-surface)" }}>
-    <div className="max-w-6xl mx-auto">
-      <p className="text-center uppercase text-xs tracking-[0.2em] font-bold mb-3" style={{ color: "var(--brand-primary)" }}>
-        Acompanhe no Instagram
-      </p>
-      <h2 className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-12" style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-        Conteúdo e Dicas
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {instagramPosts.map((post, i) => (
-          <div key={i} className="p-8 rounded-[2rem] bg-white border border-[#2B2330]/5 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-[#E4DAEF] flex items-center justify-center mb-6">
-              <post.icon size={28} className="text-[#795C8A]" />
+/* ─── Galeria Instagram (Reels) ─── */
+const instagramReels = [
+  { id: "DXIFv1ohxsS", caption: "Você sabia que conversar com o bebê desde cedo faz toda diferença?", image: LIFESTYLE_IMAGE },
+  { id: "DW2K-0lBNyc", caption: "A escola do seu filho indicou que você procure uma fono", image: LIFESTYLE_IMAGE },
+  { id: "DWH0v1agbuF", caption: "Você realmente sabe o que uma fonoaudióloga faz?", image: PROFESSIONAL_PHOTO },
+  { id: "DWSH66sBQAH", caption: "Testes e protocolos de avaliação fonoaudiológica", image: LIFESTYLE_IMAGE },
+  { id: "DXPK4dnh7ED", caption: "Fonoaudiologia no Transtorno do Espectro Autista", image: PROFESSIONAL_PHOTO },
+  { id: "DXXlPK6Kb-8", caption: "A importância da intervenção precoce na fala", image: LIFESTYLE_IMAGE },
+  { id: "DX6usJvhYJq", caption: "Marcos de desenvolvimento da comunicação infantil", image: PROFESSIONAL_PHOTO },
+];
+
+const ReelCard = ({ id, caption }) => (
+  <div
+    className="w-full rounded-2xl overflow-hidden shadow-sm border border-black/5 bg-gray-50"
+    style={{ aspectRatio: '9/16', position: 'relative' }}
+  >
+    <iframe
+      src={`https://www.instagram.com/reel/${id}/embed/`}
+      title={caption}
+      frameBorder="0"
+      scrolling="no"
+      allowTransparency="true"
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+    ></iframe>
+  </div>
+);
+
+const InstagramGallery = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    align: 'start',
+    loop: true,
+    slidesToScroll: 1,
+    breakpoints: {
+      '(min-width: 768px)': { slidesToScroll: 2 },
+      '(min-width: 1024px)': { slidesToScroll: 3 }
+    }
+  });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  return (
+    <section className="px-4 py-16 sm:py-20 overflow-hidden" style={{ backgroundColor: "var(--brand-surface)" }}>
+      <div className="max-w-6xl mx-auto">
+        <p className="text-center uppercase text-xs tracking-[0.2em] font-bold mb-3" style={{ color: "var(--brand-primary)" }}>
+          Acompanhe no Instagram
+        </p>
+        <h2 className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-12" style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+          Conteúdo e Dicas em Vídeo
+        </h2>
+        
+        <div className="relative group px-4">
+          <div className="embla overflow-hidden" ref={emblaRef}>
+            <div className="embla__container flex items-stretch">
+              {instagramReels.map(({ id, caption }) => (
+                <div key={id} className="embla__slide flex-[0_0_72%] sm:flex-[0_0_40%] lg:flex-[0_0_27%] min-w-0 px-2">
+                  <ReelCard id={id} caption={caption} />
+                </div>
+              ))}
             </div>
-            <h3 className="text-xl font-semibold mb-3 leading-tight">{post.title}</h3>
-            <p className="text-sm leading-relaxed text-[#5C4F63] mb-6 flex-grow">{post.description}</p>
-            <a 
-              href={post.link}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#795C8A] hover:underline mt-auto"
-            >
-              <Instagram size={16} />
-              Ver no Instagram
-            </a>
           </div>
-        ))}
+
+          <button 
+            onClick={scrollPrev}
+            className="absolute left-[-10px] sm:left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[#795C8A] z-10 transition-transform hover:scale-110 active:scale-95"
+            aria-label="Anterior"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <button 
+            onClick={scrollNext}
+            className="absolute right-[-10px] sm:right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[#795C8A] z-10 transition-transform hover:scale-110 active:scale-95"
+            aria-label="Próximo"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+        
+        <div className="mt-12 text-center">
+          <a 
+            href="https://instagram.com/fernandaloyola_fono"
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#795C8A] text-white font-bold hover:opacity-90 transition-opacity"
+          >
+            <Instagram size={20} />
+            Ver mais no Instagram
+          </a>
+        </div>
       </div>
-    </div>
-</section>;
+    </section>
+  );
+};
+
 
 
 /* ─── Atendimento Presencial ─── */
@@ -393,7 +461,7 @@ const AtendimentoSection = () =>
         <p
         className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-3"
         style={{ color: "var(--brand-muted)" }}>
-          Atendimento realizado de forma <strong style={{ color: "var(--brand-dark)" }}>presencial em Nova Iguaçu (centro) ou online</strong>, com foco no acolhimento da criança e de toda a família. Entre em contato para consultar as condições.
+          Atendimento realizado de forma <strong style={{ color: "var(--brand-dark)" }}>presencial em Vila Valqueire, Nova Iguaçu (centro) ou online</strong>. Atendimento exclusivamente <strong style={{ color: "var(--brand-dark)" }}>particular (não aceito convênio)</strong>, com foco no acolhimento da criança e de toda a família.
         </p>
         <div className="flex flex-wrap justify-center gap-3 mt-6">
           {["Ambiente acolhedor", "Foco na família", "Atendimento individual"].map((item) =>
@@ -428,7 +496,7 @@ const CTASection = () =>
         Quer saber mais sobre o atendimento?
       </h2>
       <p className="text-base sm:text-lg leading-relaxed text-white/80 mb-8 max-w-lg mx-auto">
-        Entre em contato para conversar sobre as necessidades do seu filho. Estou aqui para ajudar.
+        Entre em contato para conversar sobre as necessidades do seu filho. Atendimento particular (não aceito convênio). Estou aqui para ajudar.
       </p>
       <a
       href={WHATSAPP_URL}
@@ -525,7 +593,7 @@ function App() {
       <SobreSection />
       {/* <FeedbackSection /> */}
       <ComoFuncionaSection />
-      <SocialSection />
+      <InstagramGallery />
       <AtendimentoSection />
       <CTASection />
       <Footer />
