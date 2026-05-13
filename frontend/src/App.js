@@ -1,7 +1,7 @@
 import "@/App.css";
 import { MessageCircle, MapPin, Baby, Ear, Brain, Heart, CheckCircle, Instagram, Phone, ClipboardCheck, UserRound, Handshake, Star, Play, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from 'embla-carousel-react';
-import { useCallback } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5521967647661&text=Ol%C3%A1!%20Vi%20seu%20an%C3%BAncio%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20atendimento%20fonoaudiol%C3%B3gico%20infantil.";
 const PROFESSIONAL_PHOTO = "/assets/fernanda_hero.jpg";
@@ -334,18 +334,34 @@ const ComoFuncionaSection = () =>
 /* ─── Galeria Instagram (Reels) ─── */
 const instagramReels = [
   { id: "DXIFv1ohxsS", caption: "Você sabia que conversar com o bebê desde cedo faz toda diferença?", image: LIFESTYLE_IMAGE },
-  { id: "DW2K-0lBNyc", caption: "A escola do seu filho indicou que você procure uma fono", image: LIFESTYLE_IMAGE },
-  { id: "DWH0v1agbuF", caption: "Você realmente sabe o que uma fonoaudióloga faz?", image: PROFESSIONAL_PHOTO },
+  { 
+    id: "DW2K-0lBNyc", 
+    caption: "A escola do seu filho indicou que você procure uma fono", 
+    image: LIFESTYLE_IMAGE,
+    top: '-18%', // Override to fix alignment
+    height: '190%'
+  },
+  { 
+    id: "DWH0v1agbuF", 
+    caption: "Você realmente sabe o que uma fonoaudióloga faz?", 
+    image: PROFESSIONAL_PHOTO
+  },
   { id: "DWSH66sBQAH", caption: "Testes e protocolos de avaliação fonoaudiológica", image: LIFESTYLE_IMAGE },
   { id: "DXPK4dnh7ED", caption: "Fonoaudiologia no Transtorno do Espectro Autista", image: PROFESSIONAL_PHOTO },
-  { id: "DXXlPK6Kb-8", caption: "A importância da intervenção precoce na fala", image: LIFESTYLE_IMAGE },
+  { 
+    id: "DXXlPK6Kb-8", 
+    caption: "Seletividade Alimentar", 
+    image: LIFESTYLE_IMAGE,
+    top: '-18%', 
+    height: '190%'
+  },
   { id: "DX6usJvhYJq", caption: "Marcos de desenvolvimento da comunicação infantil", image: PROFESSIONAL_PHOTO },
 ];
 
-const ReelCard = ({ id, caption }) => (
+const ReelCard = ({ id, caption, top, height }) => (
   <div
-    className="w-full rounded-2xl overflow-hidden shadow-sm border border-black/5 bg-gray-50"
-    style={{ aspectRatio: '9/16', position: 'relative' }}
+    className="w-full rounded-2xl overflow-hidden shadow-sm border border-black/5 bg-gray-50 relative"
+    style={{ aspectRatio: '9/16' }}
   >
     <iframe
       src={`https://www.instagram.com/reel/${id}/embed/`}
@@ -354,7 +370,16 @@ const ReelCard = ({ id, caption }) => (
       scrolling="no"
       allowTransparency="true"
       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-      style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+      className="absolute"
+      loading="lazy"
+      style={{ 
+        width: '160%',
+        height: height || '180%', 
+        top: top || '-10%',
+        left: '-30%',
+        border: 'none', 
+        display: 'block'
+      }}
     ></iframe>
   </div>
 );
@@ -369,6 +394,23 @@ const InstagramGallery = () => {
       '(min-width: 1024px)': { slidesToScroll: 3 }
     }
   });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
+
+  const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi, setSelectedIndex]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+  }, [emblaApi, setScrollSnaps, onSelect]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -391,9 +433,9 @@ const InstagramGallery = () => {
         <div className="relative group px-4">
           <div className="embla overflow-hidden" ref={emblaRef}>
             <div className="embla__container flex items-stretch">
-              {instagramReels.map(({ id, caption }) => (
-                <div key={id} className="embla__slide flex-[0_0_72%] sm:flex-[0_0_40%] lg:flex-[0_0_27%] min-w-0 px-2">
-                  <ReelCard id={id} caption={caption} />
+              {instagramReels.map((reel) => (
+                <div key={reel.id} className="embla__slide flex-[0_0_72%] sm:flex-[0_0_40%] lg:flex-[0_0_27%] min-w-0 px-2">
+                  <ReelCard {...reel} />
                 </div>
               ))}
             </div>
@@ -401,7 +443,7 @@ const InstagramGallery = () => {
 
           <button 
             onClick={scrollPrev}
-            className="absolute left-[-10px] sm:left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[#795C8A] z-10 transition-transform hover:scale-110 active:scale-95"
+            className="absolute left-[-10px] sm:left-[-20px] top-[45%] -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[#795C8A] z-10 transition-transform hover:scale-110 active:scale-95"
             aria-label="Anterior"
           >
             <ChevronLeft size={24} />
@@ -409,11 +451,25 @@ const InstagramGallery = () => {
 
           <button 
             onClick={scrollNext}
-            className="absolute right-[-10px] sm:right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[#795C8A] z-10 transition-transform hover:scale-110 active:scale-95"
+            className="absolute right-[-10px] sm:right-[-20px] top-[45%] -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[#795C8A] z-10 transition-transform hover:scale-110 active:scale-95"
             aria-label="Próximo"
           >
             <ChevronRight size={24} />
           </button>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {scrollSnaps.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollTo(index)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                index === selectedIndex ? 'bg-[#795C8A] w-6' : 'bg-[#795C8A]/30'
+              }`}
+              aria-label={`Ir para slide ${index + 1}`}
+            />
+          ))}
         </div>
         
         <div className="mt-12 text-center">
