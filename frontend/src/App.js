@@ -369,18 +369,26 @@ const ReelCard = ({ id, caption, top, height }) => (
       frameBorder="0"
       scrolling="no"
       allowTransparency="true"
-      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      allow="autoplay; fullscreen; clipboard-write; encrypted-media; picture-in-picture; web-share"
       className="absolute"
-      loading="lazy"
       style={{ 
         width: '160%',
         height: height || '180%', 
         top: top || '-10%',
         left: '-30%',
         border: 'none', 
-        display: 'block'
+        display: 'block',
+        pointerEvents: 'auto'
       }}
     ></iframe>
+    {/* Overlay invisível apenas para mobile, que abre o vídeo nativamente no Instagram e resolve o bug de toque no iframe */}
+    <a 
+      href={`https://www.instagram.com/reel/${id}/`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="absolute inset-0 z-20 md:hidden block"
+      aria-label="Assistir vídeo no Instagram"
+    ></a>
   </div>
 );
 
