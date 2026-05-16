@@ -7,12 +7,7 @@ const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5521967647661&text=Ol%
 const PROFESSIONAL_PHOTO = "/assets/fernanda_hero.jpg";
 const LIFESTYLE_IMAGE = "/assets/lifestyle_work.jpeg";
 
-const feedbackImages = [
-  "/assets/feedback_1.jpg",
-  "/assets/feedback_2.jpg",
-  "/assets/feedback_3.jpg",
-  "/assets/feedback_4.jpg"
-];
+const feedbackImages = Array.from({ length: 14 }, (_, i) => `/assets/feedback_${i + 1}.jpg`);
 
 const instagramPosts = [
   {
@@ -86,12 +81,18 @@ const HeroSection = () =>
         Fernanda Loyola
       </h1>
 
-      <p
-      className="max-w-2xl animate-fade-in-up animate-delay-300 text-base sm:text-lg leading-relaxed mt-5 opacity-0 !text-[#5C4F63]"
-      style={{ color: "var(--brand-muted)" }}
-      data-testid="hero-subtitle">
-        Fonoaudióloga infantojuvenil com mais de 15 anos de experiência, especializada em transtornos de fala, autismo (TEA), síndrome de Down, CAA, Prompt, Multigestos e intervenção precoce. Atendimento particular <span className="font-bold text-brand-dark" style={{ fontSize: '1.1em' }}>(não aceito convênio)</span> em Vila Valqueire, Nova Iguaçu e online.
-      </p>
+      <div className="max-w-2xl animate-fade-in-up animate-delay-300 mt-5 opacity-0">
+        <p
+        className="text-base sm:text-lg leading-relaxed !text-[#5C4F63]"
+        style={{ color: "var(--brand-muted)" }}>
+          Fonoaudióloga infantojuvenil com mais de 15 anos de experiência, especializada em transtornos de fala, autismo (TEA), síndrome de Down, CAA, Prompt, Multigestos e intervenção precoce.
+        </p>
+        <p
+        className="text-base sm:text-lg leading-relaxed mt-4 !text-[#5C4F63]"
+        style={{ color: "var(--brand-muted)" }}>
+          Atendimento particular <span className="font-bold text-brand-dark" style={{ fontSize: '1.1em' }}>(não aceito convênio)</span> em Vila Valqueire, Nova Iguaçu e online.
+        </p>
+      </div>
 
       <a
       href={WHATSAPP_URL}
@@ -230,29 +231,89 @@ const SobreSection = () =>
   </section>;
 
 /* ─── Feedbacks ─── */
-const FeedbackSection = () =>
-<section
-  data-testid="feedback-section"
-  className="px-4 py-16 sm:py-20"
-  style={{ backgroundColor: "var(--brand-surface)" }}>
-    <div className="max-w-6xl mx-auto">
-      <p className="text-center uppercase text-xs tracking-[0.2em] font-bold mb-3" style={{ color: "var(--brand-primary)" }}>
-        Feedbacks das Famílias
-      </p>
-      <h2 className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-12" style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-        O que dizem os pais
-      </h2>
-      
-      {/* Masonry Layout using CSS Columns */}
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-        {feedbackImages.map((img, i) => (
-          <div key={i} className="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-black/5">
-            <img src={img} alt={`Feedback ${i + 1}`} className="w-full h-auto block" />
+const FeedbackSection = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    align: 'start',
+    loop: true,
+    slidesToScroll: 1,
+    breakpoints: {
+      '(min-width: 640px)': { slidesToScroll: 2 },
+      '(min-width: 1024px)': { slidesToScroll: 3 }
+    }
+  });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
+
+  const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi, setSelectedIndex]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+  }, [emblaApi, setScrollSnaps, onSelect]);
+
+  return (
+    <section className="px-4 py-16 sm:py-20 overflow-hidden" style={{ backgroundColor: "var(--brand-surface)" }}>
+      <div className="max-w-6xl mx-auto">
+        <p className="text-center uppercase text-xs tracking-[0.2em] font-bold mb-3" style={{ color: "var(--brand-primary)" }}>
+          Feedbacks das Famílias
+        </p>
+        <h2 className="text-center text-3xl sm:text-4xl tracking-tight font-semibold mb-12" style={{ color: "var(--brand-dark)", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+          O que dizem os pais
+        </h2>
+        
+        <div className="relative px-4">
+          <div className="embla overflow-hidden" ref={emblaRef}>
+            <div className="embla__container flex items-stretch">
+              {feedbackImages.map((img, i) => (
+                <div key={i} className="embla__slide flex-[0_0_85%] sm:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0 px-3">
+                  <div className="rounded-2xl overflow-hidden shadow-sm border border-black/5 bg-white h-full">
+                    <img src={img} alt={`Feedback ${i + 1}`} className="w-full h-auto block" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+
+          <button 
+            onClick={() => emblaApi && emblaApi.scrollPrev()}
+            className="absolute left-[-10px] sm:left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-[#795C8A] z-10"
+            aria-label="Anterior"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <button 
+            onClick={() => emblaApi && emblaApi.scrollNext()}
+            className="absolute right-[-10px] sm:right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-[#795C8A] z-10"
+            aria-label="Próximo"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        <div className="flex justify-center gap-2 mt-8">
+          {scrollSnaps.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollTo(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === selectedIndex ? 'bg-[#795C8A] w-4' : 'bg-[#795C8A]/20'
+              }`}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-</section>;
+    </section>
+  );
+};
 
 
 /* ─── Como Funciona ─── */
@@ -522,11 +583,16 @@ const AtendimentoSection = () =>
         data-testid="atendimento-title">
           Atendimento Presencial e Online
         </h2>
-        <p
+        <div
         className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-3"
         style={{ color: "var(--brand-muted)" }}>
-          Atendimento realizado de forma <strong style={{ color: "var(--brand-dark)" }}>presencial em Vila Valqueire, Nova Iguaçu (centro) ou online</strong>. Atendimento exclusivamente <strong style={{ color: "var(--brand-dark)" }}>particular <span style={{ fontSize: '1.1em' }}>(não aceito convênio)</span></strong>, com foco no acolhimento da criança e de toda a família.
-        </p>
+          <p>
+            Atendimento realizado de forma <strong style={{ color: "var(--brand-dark)" }}>presencial em Vila Valqueire, Nova Iguaçu (centro) ou online</strong>.
+          </p>
+          <p className="mt-3">
+            Atendimento exclusivamente <strong style={{ color: "var(--brand-dark)" }}>particular <span style={{ fontSize: '1.1em' }}>(não aceito convênio)</span></strong>, com foco no acolhimento da criança e de toda a família.
+          </p>
+        </div>
         <div className="flex flex-wrap justify-center gap-3 mt-6">
           {["Ambiente acolhedor", "Foco na família", "Atendimento individual"].map((item) =>
         <span
@@ -559,9 +625,11 @@ const CTASection = () =>
       data-testid="cta-title">
         Quer saber mais sobre o atendimento?
       </h2>
-      <p className="text-base sm:text-lg leading-relaxed text-white/80 mb-8 max-w-lg mx-auto">
-        Entre em contato para conversar sobre as necessidades do seu filho. Atendimento particular <span className="font-bold text-white" style={{ fontSize: '1.1em' }}>(não aceito convênio)</span>. Estou aqui para ajudar.
-      </p>
+      <div className="text-base sm:text-lg leading-relaxed text-white/80 mb-8 max-w-lg mx-auto">
+        <p>Entre em contato para conversar sobre as necessidades do seu filho.</p>
+        <p className="mt-2">Atendimento particular <span className="font-bold text-white" style={{ fontSize: '1.1em' }}>(não aceito convênio)</span>.</p>
+        <p className="mt-2">Estou aqui para ajudar.</p>
+      </div>
       <a
       href={WHATSAPP_URL}
       onClick={() => trackWhatsAppClick("Final CTA")}
@@ -655,7 +723,7 @@ function App() {
       <HeroSection />
       <ParaQuemSection />
       <SobreSection />
-      {/* <FeedbackSection /> */}
+      <FeedbackSection />
       <ComoFuncionaSection />
       <InstagramGallery />
       <AtendimentoSection />
