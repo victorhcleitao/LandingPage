@@ -7,7 +7,7 @@ const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5521967647661&text=Ol%
 const PROFESSIONAL_PHOTO = "/assets/fernanda_hero.jpg";
 const LIFESTYLE_IMAGE = "/assets/lifestyle_work.jpeg";
 
-const feedbackImages = Array.from({ length: 14 }, (_, i) => `/assets/feedback_${i + 1}.jpg`);
+const feedbackImages = Array.from({ length: 10 }, (_, i) => `/assets/feedback_${i + 5}.jpg`);
 
 const instagramPosts = [
   {
@@ -723,9 +723,9 @@ function App() {
       <HeroSection />
       <ParaQuemSection />
       <SobreSection />
-      <FeedbackSection />
       <ComoFuncionaSection />
       <InstagramGallery />
+      <FeedbackSection />
       <AtendimentoSection />
       <CTASection />
       <Footer />
