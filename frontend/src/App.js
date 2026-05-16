@@ -90,7 +90,7 @@ const HeroSection = () =>
       className="max-w-2xl animate-fade-in-up animate-delay-300 text-base sm:text-lg leading-relaxed mt-5 opacity-0 !text-[#5C4F63]"
       style={{ color: "var(--brand-muted)" }}
       data-testid="hero-subtitle">
-        Fonoaudióloga infanto-juvenil há mais de 15 anos, especializada em transtornos de fala, transtorno do espectro autista, síndrome de Down, CAA, prompt 1, multigestos e intervenção precoce. Atendimento particular (não aceito convênio) em Vila Valqueire, Nova Iguaçu e online.
+        Fonoaudióloga infantojuvenil com mais de 15 anos de experiência, especializada em transtornos de fala, autismo (TEA), síndrome de Down, CAA, Prompt, Multigestos e intervenção precoce. Atendimento particular <span className="font-bold text-brand-dark" style={{ fontSize: '1.1em' }}>(não aceito convênio)</span> em Vila Valqueire, Nova Iguaçu e online.
       </p>
 
       <a
@@ -525,7 +525,7 @@ const AtendimentoSection = () =>
         <p
         className="text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-3"
         style={{ color: "var(--brand-muted)" }}>
-          Atendimento realizado de forma <strong style={{ color: "var(--brand-dark)" }}>presencial em Vila Valqueire, Nova Iguaçu (centro) ou online</strong>. Atendimento exclusivamente <strong style={{ color: "var(--brand-dark)" }}>particular (não aceito convênio)</strong>, com foco no acolhimento da criança e de toda a família.
+          Atendimento realizado de forma <strong style={{ color: "var(--brand-dark)" }}>presencial em Vila Valqueire, Nova Iguaçu (centro) ou online</strong>. Atendimento exclusivamente <strong style={{ color: "var(--brand-dark)" }}>particular <span style={{ fontSize: '1.1em' }}>(não aceito convênio)</span></strong>, com foco no acolhimento da criança e de toda a família.
         </p>
         <div className="flex flex-wrap justify-center gap-3 mt-6">
           {["Ambiente acolhedor", "Foco na família", "Atendimento individual"].map((item) =>
@@ -560,7 +560,7 @@ const CTASection = () =>
         Quer saber mais sobre o atendimento?
       </h2>
       <p className="text-base sm:text-lg leading-relaxed text-white/80 mb-8 max-w-lg mx-auto">
-        Entre em contato para conversar sobre as necessidades do seu filho. Atendimento particular (não aceito convênio). Estou aqui para ajudar.
+        Entre em contato para conversar sobre as necessidades do seu filho. Atendimento particular <span className="font-bold text-white" style={{ fontSize: '1.1em' }}>(não aceito convênio)</span>. Estou aqui para ajudar.
       </p>
       <a
       href={WHATSAPP_URL}
